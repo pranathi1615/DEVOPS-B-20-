@@ -1,12 +1,8 @@
-version: '3.8'
-
 services:
   mongodb:
     image: mongo:6.0
     container_name: exam_mongodb
     restart: always
-    ports:
-      - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: online_exam_db
     volumes:
@@ -26,14 +22,14 @@ services:
     container_name: exam_backend
     restart: always
     ports:
-      - "5000:5000"
+      - "5001:5000"
     environment:
       - PORT=5000
       - NODE_ENV=production
       - MONGODB_URI=mongodb://mongodb:27017/online_exam_db
       - JWT_SECRET=dev_secret_key_1615_online_exam_jwt_secure_token
       - JWT_EXPIRES_IN=7d
-      - CLIENT_URL=http://localhost:3000
+      - CLIENT_URL=http://localhost:3001
     depends_on:
       mongodb:
         condition: service_healthy
@@ -44,10 +40,13 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:5001/api
+        VITE_SOCKET_URL: http://localhost:5001
     container_name: exam_frontend
     restart: always
     ports:
-      - "3000:80"
+      - "3001:80"
     depends_on:
       - backend
     networks:

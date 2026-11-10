@@ -126,7 +126,8 @@ exports.getExamSummaryReport = async (req, res, next) => {
 
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename=exam_summary_${Date.now()}.pdf`);
-      return doc.pipe(res);
+      doc.pipe(res);
+      return doc.end();
     }
 
     res.status(200).json({
@@ -230,7 +231,8 @@ exports.getAttendanceReport = async (req, res, next) => {
 
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename=attendance_report_${Date.now()}.pdf`);
-      return doc.pipe(res);
+      doc.pipe(res);
+      return doc.end();
     }
 
     res.status(200).json({
@@ -330,7 +332,8 @@ exports.getIncidentRegisterReport = async (req, res, next) => {
 
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename=incident_register_${Date.now()}.pdf`);
-      return doc.pipe(res);
+      doc.pipe(res);
+      return doc.end();
     }
 
     res.status(200).json({
@@ -437,7 +440,8 @@ exports.getSubmissionStatusReport = async (req, res, next) => {
 
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename=submission_status_${Date.now()}.pdf`);
-      return doc.pipe(res);
+      doc.pipe(res);
+      return doc.end();
     }
 
     res.status(200).json({
