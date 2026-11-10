@@ -31,3 +31,6 @@ logs/
 # Docker / Kubernetes local volumes
 mongo_data/
 .mongodb-memory-server/
+
+# Helper script
+push.bat
